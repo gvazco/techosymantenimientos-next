@@ -8,6 +8,9 @@ import { Columns } from "components/Columns";
 import { Column } from "components/Column";
 import Image from "next/image";
 import { PropertySearch } from "components/PropertySearch";
+import { ProductSearch } from "components/ProductSearch";
+import { PostTitle } from "components/PostTitle";
+import { ProyectSearch } from "components/ProyectSearch";
 
 export const BlockRenderer = ({ blocks }) => {
   console.log(blocks);
@@ -58,6 +61,12 @@ export const BlockRenderer = ({ blocks }) => {
       }
       case "acf/propertysearch": {
         return <PropertySearch key={block.id} />;
+      }
+      case "acf/productsearch": {
+        return <ProductSearch key={block.id} />;
+      }
+      case "acf/proyectsearch": {
+        return <ProyectSearch key={block.id} />;
       }
       case "core/cover": {
         console.log("COVER BLOCK: ", block);
