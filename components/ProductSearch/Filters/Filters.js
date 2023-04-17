@@ -26,6 +26,15 @@ export const Filters = ({ onSearch }) => {
     });
   };
 
+  const handleCheckboxChange = (checkboxName) => {
+    setLaminaLisa(checkboxName === "laminaLisa");
+    setLaminaAcanalada(checkboxName === "laminaAcanalada");
+    setLaminaOndulada(checkboxName === "laminaOndulada");
+    setLaminaTranslucida(checkboxName === "laminaTranslucida");
+    setPanelAislante(checkboxName === "panelAislante");
+    setAccesorios(checkboxName === "accesorios");
+  };
+
   useEffect(() => {
     const {
       laminaLisa: laminaLisaInitial,
@@ -34,7 +43,7 @@ export const Filters = ({ onSearch }) => {
       laminaTranslucida: laminaTranslucidaInitial,
       panelAislante: panelAislanteInitial,
       accesorios: accesoriosInitial,
-    } = queryString.parse(window.location.searchProduct);
+    } = queryString.parse(window.location.search);
 
     setLaminaLisa(laminaLisaInitial === "true");
     setLaminaAcanalada(laminaAcanaladaInitial === "true");
@@ -51,13 +60,30 @@ export const Filters = ({ onSearch }) => {
         <div className="max-w-5xl lg:mx-auto mx-2 my-5 flex gap-5 border-solid border-slate-400 border-2 p-5 rounded-md">
           <div className="flex-1">
             <div>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={
+                    !laminaAcanalada &&
+                    !laminaLisa &&
+                    !laminaOndulada &&
+                    !laminaTranslucida &&
+                    !panelAislante &&
+                    !accesorios
+                  }
+                  onChange={() => handleCheckboxChange("ningunaSeleccion")}
+                />
+                <span className="pl-2">Ver todos</span>
+              </label>
+            </div>
+            <div>
               <label className="cursor-pointer">
                 <input
                   type="checkbox"
                   checked={laminaAcanalada}
-                  onChange={() => setLaminaAcanalada((value) => !value)}
+                  onChange={() => handleCheckboxChange("laminaAcanalada")}
                 />
-                <span className="pl-2">lamina acanalada</span>
+                <span className="pl-2">Lámina acanalada</span>
               </label>
             </div>
             <div>
@@ -65,9 +91,9 @@ export const Filters = ({ onSearch }) => {
                 <input
                   type="checkbox"
                   checked={laminaLisa}
-                  onChange={() => setLaminaLisa((value) => !value)}
+                  onChange={() => handleCheckboxChange("laminaLisa")}
                 />
-                <span className="pl-2">lamina lisa</span>
+                <span className="pl-2">Lámina lisa</span>
               </label>
             </div>
           </div>
@@ -77,9 +103,9 @@ export const Filters = ({ onSearch }) => {
                 <input
                   type="checkbox"
                   checked={laminaOndulada}
-                  onChange={() => setLaminaOndulada((value) => !value)}
+                  onChange={() => handleCheckboxChange("laminaOndulada")}
                 />
-                <span className="pl-2">lamina ondulada</span>
+                <span className="pl-2">Lámina ondulada</span>
               </label>
             </div>
             <div>
@@ -87,9 +113,9 @@ export const Filters = ({ onSearch }) => {
                 <input
                   type="checkbox"
                   checked={laminaTranslucida}
-                  onChange={() => setLaminaTranslucida((value) => !value)}
+                  onChange={() => handleCheckboxChange("laminaTranslucida")}
                 />
-                <span className="pl-2">lamina translúcida</span>
+                <span className="pl-2">Lámina translúcida</span>
               </label>
             </div>
           </div>
@@ -99,9 +125,9 @@ export const Filters = ({ onSearch }) => {
                 <input
                   type="checkbox"
                   checked={panelAislante}
-                  onChange={() => setPanelAislante((value) => !value)}
+                  onChange={() => handleCheckboxChange("panelAislante")}
                 />
-                <span className="pl-2">panel aislante</span>
+                <span className="pl-2">Panel aislante</span>
               </label>
             </div>
             <div>
@@ -109,9 +135,9 @@ export const Filters = ({ onSearch }) => {
                 <input
                   type="checkbox"
                   checked={accesorios}
-                  onChange={() => setAccesorios((value) => !value)}
+                  onChange={() => handleCheckboxChange("accesorios")}
                 />
-                <span className="pl-2">accesorios</span>
+                <span className="pl-2">Accesorios</span>
               </label>
             </div>
           </div>
@@ -128,10 +154,10 @@ export const Filters = ({ onSearch }) => {
         <div className="relative">
           {/* Botón de activación del menú */}
           <div
-            className="max-w-5xl md:mx-auto mx-2 my-5 bg-gray-300 p-3 rounded-md cursor-pointer md:hidden text-right"
+            className="max-w-5xl md:mx-auto mx-2 my-5 bg-slate-200 p-3 rounded-md cursor-pointer md:hidden text-right"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <span className="p-1 align-middle">Filtros </span>
+            <span className="p-1 align-middle">Filtrar: </span>
             {!isOpen ? (
               <FontAwesomeIcon
                 className="p-1 align-middle"
@@ -154,13 +180,30 @@ export const Filters = ({ onSearch }) => {
             <div className="max-w-5xl md:mx-auto mx-2 my-5 flex gap-5 md:gap-0 border-solid border-slate-400 border-2 p-5 rounded-md flex-wrap flex-col">
               <div className="">
                 <div>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={
+                        !laminaAcanalada &&
+                        !laminaLisa &&
+                        !laminaOndulada &&
+                        !laminaTranslucida &&
+                        !panelAislante &&
+                        !accesorios
+                      }
+                      onChange={() => handleCheckboxChange("ningunaSeleccion")}
+                    />
+                    <span className="pl-2">Ver todos</span>
+                  </label>
+                </div>
+                <div>
                   <label className="cursor-pointer">
                     <input
                       type="checkbox"
                       checked={laminaAcanalada}
-                      onChange={() => setLaminaAcanalada((value) => !value)}
+                      onChange={() => handleCheckboxChange("laminaAcanalada")}
                     />
-                    <span className="pl-2">lamina acanalada</span>
+                    <span className="pl-2">Lámina acanalada</span>
                   </label>
                 </div>
                 <div>
@@ -168,9 +211,9 @@ export const Filters = ({ onSearch }) => {
                     <input
                       type="checkbox"
                       checked={laminaLisa}
-                      onChange={() => setLaminaLisa((value) => !value)}
+                      onChange={() => handleCheckboxChange("laminaLisa")}
                     />
-                    <span className="pl-2">lamina lisa</span>
+                    <span className="pl-2">Lámina lisa</span>
                   </label>
                 </div>
                 <div>
@@ -178,9 +221,9 @@ export const Filters = ({ onSearch }) => {
                     <input
                       type="checkbox"
                       checked={laminaOndulada}
-                      onChange={() => setLaminaOndulada((value) => !value)}
+                      onChange={() => handleCheckboxChange("laminaOndulada")}
                     />
-                    <span className="pl-2">lamina ondulada</span>
+                    <span className="pl-2">Lámina ondulada</span>
                   </label>
                 </div>
                 <div>
@@ -188,9 +231,9 @@ export const Filters = ({ onSearch }) => {
                     <input
                       type="checkbox"
                       checked={laminaTranslucida}
-                      onChange={() => setLaminaTranslucida((value) => !value)}
+                      onChange={() => handleCheckboxChange("laminaTranslucida")}
                     />
-                    <span className="pl-2">lamina translúcida</span>
+                    <span className="pl-2">Lámina translúcida</span>
                   </label>
                 </div>
                 <div>
@@ -198,9 +241,9 @@ export const Filters = ({ onSearch }) => {
                     <input
                       type="checkbox"
                       checked={panelAislante}
-                      onChange={() => setPanelAislante((value) => !value)}
+                      onChange={() => handleCheckboxChange("panelAislante")}
                     />
-                    <span className="pl-2">panel aislante</span>
+                    <span className="pl-2">Panel aislante</span>
                   </label>
                 </div>
                 <div>
@@ -208,9 +251,9 @@ export const Filters = ({ onSearch }) => {
                     <input
                       type="checkbox"
                       checked={accesorios}
-                      onChange={() => setAccesorios((value) => !value)}
+                      onChange={() => handleCheckboxChange("accesorios")}
                     />
-                    <span className="pl-2">accesorios</span>
+                    <span className="pl-2">Accesorios</span>
                   </label>
                 </div>
               </div>

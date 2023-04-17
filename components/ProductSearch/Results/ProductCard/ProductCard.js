@@ -106,7 +106,7 @@ export const ProductCard = ({
           </div>
         )}
         {!!entrega && (
-          <div className="flex justify-between">
+          <div className="flex">
             <FontAwesomeIcon className="p-2 align-middle" icon={faTruckFast} />
             <span className="p-1 overflow-hidden text-ellipsis truncate">
               Disponibilidad {entrega}
@@ -114,7 +114,7 @@ export const ProductCard = ({
           </div>
         )}
         {!!otros && (
-          <div className="flex justify-between">
+          <div className="flex">
             <FontAwesomeIcon className="p-2 align-middle" icon={faIndustry} />
             <span className="p-1 overflow-hidden text-ellipsis truncate">
               {otros}
