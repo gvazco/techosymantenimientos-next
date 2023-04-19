@@ -71,7 +71,7 @@ export const ProductCard = ({
             />
 
             <span className="p-1 overflow-hidden text-ellipsis truncate">
-              {separador(largoEfectivo)} de largo estándar.
+              {separador(largoEfectivo)} largo estándar.
             </span>
           </div>
         )}
@@ -82,7 +82,7 @@ export const ProductCard = ({
               icon={faUpRightAndDownLeftFromCenter}
             />
             <span className="p-1 overflow-hidden text-ellipsis truncate">
-              {separador(largoEstandar)} de largo estándar.
+              {separador(largoEstandar)} largo estándar.
             </span>
           </div>
         )}
@@ -90,7 +90,7 @@ export const ProductCard = ({
           <div className="flex">
             <FontAwesomeIcon className="p-2 align-middle" icon={faLeftRight} />
             <span className="p-1 overflow-hidden text-ellipsis truncate">
-              {separador(anchoEfectivo)} de ancho efectivo.
+              {separador(anchoEfectivo)} ancho efectivo.
             </span>
           </div>
         )}
@@ -122,9 +122,9 @@ export const ProductCard = ({
           </div>
         )}
 
-        <div className="flex justify-center">
-          <ButtonLink destination={destination} label="Ver más..." />
-        </div>
+        {/* <div className="flex justify-center">
+          <ButtonLink destination={destination} label="Más detalles..." />
+        </div> */}
       </a>
     </Link>
   );

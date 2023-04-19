@@ -5,15 +5,14 @@ const handler = async (req, res) => {
   try {
     const filters = JSON.parse(req.body);
 
-    let laminaLisaFilter = ``;
-    let laminaAcanaladaFilter = ``;
-    let laminaOnduladaFilter = ``;
+    let estructuraMetalicaFilter = ``;
+    let laminaEstructuralFilter = ``;
     let laminaTranslucidaFilter = ``;
     let panelAislanteFilter = ``;
-    let accesoriosFilter = ``;
+    let mantenimientoFilter = ``;
 
-    if (filters.laminaLisa) {
-      laminaLisaFilter = `
+    if (filters.estructuraMetalica) {
+      estructuraMetalicaFilter = `
       {
         key: "lamina_lisa"
         compare: EQUAL_TO
@@ -22,20 +21,10 @@ const handler = async (req, res) => {
       `;
     }
 
-    if (filters.laminaAcanalada) {
-      laminaAcanaladaFilter = `
+    if (filters.laminaEstructural) {
+      laminaEstructuralFilter = `
       {
         key: "lamina_acanalada"
-        compare: EQUAL_TO
-        value: "1"
-      },
-      `;
-    }
-
-    if (filters.laminaOndulada) {
-      laminaOnduladaFilter = `
-      {
-        key: "lamina_ondulada"
         compare: EQUAL_TO
         value: "1"
       },
@@ -62,10 +51,10 @@ const handler = async (req, res) => {
       `;
     }
 
-    if (filters.accesorios) {
-      accesoriosFilter = `
+    if (filters.mantenimiento) {
+      mantenimientoFilter = `
       {
-        key: "accesorios"
+        key: "mantenimiento"
         compare: EQUAL_TO
         value: "1"
       },
@@ -82,12 +71,11 @@ const handler = async (req, res) => {
           metaQuery: {
             relation: AND
             metaArray: [
-              ${laminaAcanaladaFilter}
-              ${laminaLisaFilter}
-              ${laminaOnduladaFilter}
+              ${laminaEstructuralFilter}
+              ${estructuraMetalicaFilter}
               ${laminaTranslucidaFilter}
               ${panelAislanteFilter}
-              ${accesoriosFilter}
+              ${mantenimientoFilter}
             ]
           }
         }) {
@@ -107,13 +95,19 @@ const handler = async (req, res) => {
                 }
               }
               proyectFeatures {
-                estructuraMetalica
-                laminaEstructural
-                laminaTranslucida
-                mantenimiento
-                panelAislante
-                ubicacion
+                description {
+                  cliente
+                  ubicacion
+                }
+                type {
+                  estructuraMetalica
+                  laminaEstructural
+                  laminaTranslucida
+                  mantenimiento
+                  panelAislante
+                }
               }
+              date
             }
           }
         }

@@ -19,7 +19,7 @@ export const ProyectSearch = () => {
       laminaTranslucida,
       mantenimiento,
       panelAislante,
-    } = queryString.parse(window.location.searchProyect);
+    } = queryString.parse(window.location.search);
     const filters = {};
     if (laminaEstructural === "true") {
       filters.laminaEstructural = true;
