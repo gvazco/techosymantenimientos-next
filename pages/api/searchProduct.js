@@ -118,15 +118,13 @@ const handler = async (req, res) => {
                   otros
                   precio
                 }
-                type {
-                  accesorios
-                  fieldGroupName
-                  laminaAcanalada
-                  laminaLisa
-                  laminaOndulada
-                  laminaTranslucida
-                  panelAislante
-                }
+                accesorios
+                fieldGroupName
+                laminaAcanalada
+                laminaLisa
+                laminaOndulada
+                laminaTranslucida
+                panelAislante
               }
             }
           }

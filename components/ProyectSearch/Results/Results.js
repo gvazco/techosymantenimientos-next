@@ -8,11 +8,11 @@ export const Results = ({ proyects }) => {
           key={proyect.databaseId}
           title={proyect.title}
           destination={proyect.uri}
-          estructuraMetalica={proyect.proyectFeatures.type.estructuraMetalica}
-          laminaEstructural={proyect.proyectFeatures.type.laminaEstructural}
-          laminaTranslucida={proyect.proyectFeatures.type.laminaTranslucida}
-          panelAislante={proyect.proyectFeatures.type.panelAislante}
-          mantenimiento={proyect.proyectFeatures.type.mantenimiento}
+          estructuraMetalica={proyect.proyectFeatures.estructuraMetalica}
+          laminaEstructural={proyect.proyectFeatures.laminaEstructural}
+          laminaTranslucida={proyect.proyectFeatures.laminaTranslucida}
+          panelAislante={proyect.proyectFeatures.panelAislante}
+          mantenimiento={proyect.proyectFeatures.mantenimiento}
           ubicacion={proyect.proyectFeatures.description.ubicacion}
           cliente={proyect.proyectFeatures.description.cliente}
           date={proyect.date}

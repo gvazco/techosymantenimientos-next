@@ -99,13 +99,11 @@ const handler = async (req, res) => {
                   cliente
                   ubicacion
                 }
-                type {
                   estructuraMetalica
                   laminaEstructural
                   laminaTranslucida
                   mantenimiento
                   panelAislante
-                }
               }
               date
             }

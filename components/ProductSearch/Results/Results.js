@@ -10,7 +10,7 @@ export const Results = ({ products }) => {
           destination={product.uri}
           precio={product.productFeatures.description.precio}
           description={product.productFeatures.description}
-          type={product.productFeatures.type}
+          type={product.productFeatures}
           image={product.featuredImage?.node?.sourceUrl}
         />
       ))}
