@@ -19,7 +19,7 @@ export const MainMenu = ({
   };
   // console.log("MAIN MENU: ", items);
   return (
-    <nav className="bg-white text-slate-800">
+    <nav className="bg-white text-slate-800 font-bold">
       <div className="px-5 h-[64px] sticky top-0 z-20 flex justify-between">
         <div className="py-4 pl-5 flex">
           <Image src={Logo} height={60} width={100} alt="Logo" />

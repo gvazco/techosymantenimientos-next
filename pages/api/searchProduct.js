@@ -111,10 +111,14 @@ const handler = async (req, res) => {
                 description {
                   marca
                   anchoEfectivo
-                  calibre
-                  entrega
                   largoEfectivo
                   largoEstandar
+                  espesor
+                  calibre
+                  existencia
+                  entrega
+                  presentacion
+                  contenido
                   otros
                   precio
                 }
