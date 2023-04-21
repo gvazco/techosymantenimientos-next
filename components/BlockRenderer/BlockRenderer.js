@@ -11,6 +11,7 @@ import { PropertySearch } from "components/PropertySearch";
 import { ProductSearch } from "components/ProductSearch";
 import { PostTitle } from "components/PostTitle";
 import { ProyectSearch } from "components/ProyectSearch";
+import { PostSearch } from "components/PostSearch";
 
 export const BlockRenderer = ({ blocks }) => {
   console.log(blocks);
@@ -67,6 +68,9 @@ export const BlockRenderer = ({ blocks }) => {
       }
       case "acf/proyectsearch": {
         return <ProyectSearch key={block.id} />;
+      }
+      case "acf/postsearch": {
+        return <PostSearch key={block.id} />;
       }
       case "core/cover": {
         console.log("COVER BLOCK: ", block);

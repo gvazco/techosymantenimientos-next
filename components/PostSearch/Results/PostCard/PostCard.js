@@ -10,15 +10,16 @@ import Link from "next/link";
 import numeral from "numeral";
 import React from "react";
 
-export const ProyectCard = ({
+export const PostCard = ({
   title,
   destination,
   image,
   date,
-  ubicacion,
-  cliente,
+  autor,
+  tags,
+  type,
 }) => {
-  console.log(ubicacion, cliente);
+  console.log(autor, tags, type);
 
   // Crear un objeto de fecha a partir de la cadena de texto
   const fechaObjeto = new Date(date);
@@ -75,26 +76,6 @@ export const ProyectCard = ({
             </span>
           </div>
         )}
-        {!!cliente && (
-          <div className="flex">
-            <FontAwesomeIcon className="p-2 align-middle" icon={faBuilding} />
-            <span className="p-1 overflow-hidden text-ellipsis truncate">
-              Cliente: {cliente}
-            </span>
-          </div>
-        )}
-        {!!ubicacion && (
-          <div className="flex">
-            <FontAwesomeIcon
-              className="p-2 align-middle"
-              icon={faLocationDot}
-            />
-            <span className="p-1 overflow-hidden text-ellipsis truncate">
-              Ubicación: {ubicacion}
-            </span>
-          </div>
-        )}
-
       </a>
     </Link>
   );
