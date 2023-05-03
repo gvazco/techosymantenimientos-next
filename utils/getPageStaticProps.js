@@ -2,9 +2,10 @@ import { gql } from "@apollo/client";
 import client from "client";
 import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
 import { mapMainMenuItems } from "./mapMainMenuItems";
+import { mapSocialMenuItems } from "./mapSocialMenuItems";
 
 export const getPageStaticProps = async (context) => {
-  console.log("CONTEXT: ", context);
+  // console.log("CONTEXT: ", context);
   const uri = context.params?.slug ? `/${context.params.slug.join("/")}/` : "/";
 
   const { data } = await client.query({
@@ -20,6 +21,10 @@ export const getPageStaticProps = async (context) => {
                 sourceUrl
               }
             }
+            seo {
+              title
+              metaDesc
+            }
           }
           ... on Product {
             id
@@ -29,6 +34,27 @@ export const getPageStaticProps = async (context) => {
               node {
                 sourceUrl
               }
+            }
+            productFeatures {
+              description {
+                anchoEfectivo
+                calibre
+                contenido
+                entrega
+                espesor
+                existencia
+                largoEfectivo
+                largoEstandar
+                marca
+                otros
+                precio
+                presentacion
+                whatsapp
+              }
+            }
+            seo {
+              title
+              metaDesc
             }
           }
           ... on Proyect {
@@ -40,6 +66,10 @@ export const getPageStaticProps = async (context) => {
                 sourceUrl
               }
             }
+            seo {
+              title
+              metaDesc
+            }
           }
           ... on Post {
             id
@@ -49,6 +79,10 @@ export const getPageStaticProps = async (context) => {
               node {
                 sourceUrl
               }
+            }
+            seo {
+              title
+              metaDesc
             }
           }
         }
@@ -82,6 +116,19 @@ export const getPageStaticProps = async (context) => {
             }
           }
         }
+        acfOptionsSocialMenu {
+          socialMenu {
+            socialItems {
+              socialItem {
+                destination {
+                  url
+                }
+                label
+                setIcon
+              }
+            }
+          }
+        }
       }
     `,
     variables: {
@@ -91,10 +138,15 @@ export const getPageStaticProps = async (context) => {
   const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
   return {
     props: {
+      seo: data.nodeByUri.seo,
       title: data.nodeByUri.title,
+      productFeatures: data.nodeByUri.productFeatures?.description || null,
       featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
       mainMenuItems: mapMainMenuItems(
         data.acfOptionsMainMenu.mainMenu.menuItems
+      ),
+      socialMenuItems: mapSocialMenuItems(
+        data.acfOptionsSocialMenu.socialMenu.socialItems
       ),
       callToActionLabel:
         data.acfOptionsMainMenu.mainMenu.callToActionButton.label,

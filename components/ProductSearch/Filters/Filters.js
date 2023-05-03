@@ -12,7 +12,11 @@ export const Filters = ({ onSearch }) => {
   const [laminaOndulada, setLaminaOndulada] = useState(false);
   const [laminaTranslucida, setLaminaTranslucida] = useState(false);
   const [panelAislante, setPanelAislante] = useState(false);
-  const [accesorios, setAccesorios] = useState(false);
+  const [fijacion, setFijacion] = useState(false);
+  const [selladores, setSelladores] = useState(false);
+  const [aislantes, setAislantes] = useState(false);
+  const [rematesLamina, setRematesLamina] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSearch = () => {
@@ -22,7 +26,10 @@ export const Filters = ({ onSearch }) => {
       laminaOndulada,
       laminaTranslucida,
       panelAislante,
-      accesorios,
+      fijacion,
+      selladores,
+      aislantes,
+      rematesLamina,
     });
   };
 
@@ -32,7 +39,10 @@ export const Filters = ({ onSearch }) => {
     setLaminaOndulada(checkboxName === "laminaOndulada");
     setLaminaTranslucida(checkboxName === "laminaTranslucida");
     setPanelAislante(checkboxName === "panelAislante");
-    setAccesorios(checkboxName === "accesorios");
+    setAislantes(checkboxName === "aislantes");
+    setSelladores(checkboxName === "selladores");
+    setFijacion(checkboxName === "fijacion");
+    setRematesLamina(checkboxName === "rematesLamina");
   };
 
   useEffect(() => {
@@ -42,7 +52,10 @@ export const Filters = ({ onSearch }) => {
       laminaOndulada: laminaOnduladaInitial,
       laminaTranslucida: laminaTranslucidaInitial,
       panelAislante: panelAislanteInitial,
-      accesorios: accesoriosInitial,
+      aislantes: aislantesInitial,
+      selladores: selladoresInitial,
+      fijacion: fijacionInitial,
+      rematesLamina: rematesLaminaInitial,
     } = queryString.parse(window.location.search);
 
     setLaminaLisa(laminaLisaInitial === "true");
@@ -50,7 +63,10 @@ export const Filters = ({ onSearch }) => {
     setLaminaOndulada(laminaOnduladaInitial === "true");
     setLaminaTranslucida(laminaTranslucidaInitial === "true");
     setPanelAislante(panelAislanteInitial === "true");
-    setAccesorios(accesoriosInitial === "true");
+    setAislantes(aislantesInitial === "true");
+    setSelladores(selladoresInitial === "true");
+    setFijacion(fijacionInitial === "true");
+    setRematesLamina(rematesLaminaInitial === "true");
   }, []);
 
   return (
@@ -69,11 +85,34 @@ export const Filters = ({ onSearch }) => {
                     !laminaOndulada &&
                     !laminaTranslucida &&
                     !panelAislante &&
-                    !accesorios
+                    !aislantes &&
+                    !selladores &&
+                    !fijacion &&
+                    !rematesLamina
                   }
                   onChange={() => handleCheckboxChange("ningunaSeleccion")}
                 />
                 <span className="pl-2">Ver todos</span>
+              </label>
+            </div>
+            <div>
+              <label className="cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={aislantes}
+                  onChange={() => handleCheckboxChange("aislantes")}
+                />
+                <span className="pl-2">Aislantes</span>
+              </label>
+            </div>
+            <div>
+              <label className="cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={fijacion}
+                  onChange={() => handleCheckboxChange("fijacion")}
+                />
+                <span className="pl-2">Fijacion</span>
               </label>
             </div>
             <div>
@@ -86,6 +125,8 @@ export const Filters = ({ onSearch }) => {
                 <span className="pl-2">Lámina acanalada</span>
               </label>
             </div>
+          </div>
+          <div className="flex-1">
             <div>
               <label className="cursor-pointer">
                 <input
@@ -96,8 +137,6 @@ export const Filters = ({ onSearch }) => {
                 <span className="pl-2">Lámina lisa</span>
               </label>
             </div>
-          </div>
-          <div className="flex-1">
             <div>
               <label className="cursor-pointer">
                 <input
@@ -118,8 +157,6 @@ export const Filters = ({ onSearch }) => {
                 <span className="pl-2">Lámina translúcida</span>
               </label>
             </div>
-          </div>
-          <div className="flex-1">
             <div>
               <label className="cursor-pointer">
                 <input
@@ -130,14 +167,26 @@ export const Filters = ({ onSearch }) => {
                 <span className="pl-2">Panel aislante</span>
               </label>
             </div>
+          </div>
+          <div className="flex-1">
             <div>
               <label className="cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={accesorios}
-                  onChange={() => handleCheckboxChange("accesorios")}
+                  checked={rematesLamina}
+                  onChange={() => handleCheckboxChange("rematesLamina")}
                 />
-                <span className="pl-2">Accesorios</span>
+                <span className="pl-2">Remates lámina</span>
+              </label>
+            </div>
+            <div>
+              <label className="cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={selladores}
+                  onChange={() => handleCheckboxChange("selladores")}
+                />
+                <span className="pl-2">Selladores</span>
               </label>
             </div>
           </div>
@@ -189,11 +238,34 @@ export const Filters = ({ onSearch }) => {
                         !laminaOndulada &&
                         !laminaTranslucida &&
                         !panelAislante &&
-                        !accesorios
+                        !aislantes &&
+                        !selladores &&
+                        !fijacion &&
+                        !rematesLamina
                       }
                       onChange={() => handleCheckboxChange("ningunaSeleccion")}
                     />
                     <span className="pl-2">Ver todos</span>
+                  </label>
+                </div>
+                <div>
+                  <label className="cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={aislantes}
+                      onChange={() => handleCheckboxChange("aislantes")}
+                    />
+                    <span className="pl-2">Aislantes</span>
+                  </label>
+                </div>
+                <div>
+                  <label className="cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={fijacion}
+                      onChange={() => handleCheckboxChange("fijacion")}
+                    />
+                    <span className="pl-2">Fijación</span>
                   </label>
                 </div>
                 <div>
@@ -250,10 +322,20 @@ export const Filters = ({ onSearch }) => {
                   <label className="cursor-pointer">
                     <input
                       type="checkbox"
-                      checked={accesorios}
-                      onChange={() => handleCheckboxChange("accesorios")}
+                      checked={rematesLamina}
+                      onChange={() => handleCheckboxChange("rematesLamina")}
                     />
-                    <span className="pl-2">Accesorios</span>
+                    <span className="pl-2">Remates lámina</span>
+                  </label>
+                </div>
+                <div>
+                  <label className="cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selladores}
+                      onChange={() => handleCheckboxChange("selladores")}
+                    />
+                    <span className="pl-2">Selladores</span>
                   </label>
                 </div>
               </div>

@@ -11,7 +11,10 @@ const handler = async (req, res) => {
     let laminaOnduladaFilter = ``;
     let laminaTranslucidaFilter = ``;
     let panelAislanteFilter = ``;
-    let accesoriosFilter = ``;
+    let aislantesFilter = ``;
+    let selladoresFilter = ``;
+    let fijacionFilter = ``;
+    let rematesLaminaFilter = ``;
 
     if (filters.laminaLisa) {
       laminaLisaFilter = `
@@ -63,10 +66,40 @@ const handler = async (req, res) => {
       `;
     }
 
-    if (filters.accesorios) {
-      accesoriosFilter = `
+    if (filters.aislantes) {
+      aislantesFilter = `
       {
-        key: "accesorios"
+        key: "aislantes"
+        compare: EQUAL_TO
+        value: "1"
+      },
+      `;
+    }
+
+    if (filters.fijacion) {
+      fijacionFilter = `
+      {
+        key: "fijacion"
+        compare: EQUAL_TO
+        value: "1"
+      },
+      `;
+    }
+
+    if (filters.selladores) {
+      selladoresFilter = `
+      {
+        key: "selladores"
+        compare: EQUAL_TO
+        value: "1"
+      },
+      `;
+    }
+
+    if (filters.rematesLamina) {
+      rematesLaminaFilter = `
+      {
+        key: "remates_lamina"
         compare: EQUAL_TO
         value: "1"
       },
@@ -77,8 +110,8 @@ const handler = async (req, res) => {
       query: gql`
         query AllProductsQuery {
           products(where: {
-            offsetPagination: { size: 3, offset: ${
-              ((filters.page || 1) - 1) * 3
+            offsetPagination: { size: 6, offset: ${
+              ((filters.page || 1) - 1) * 6
             } }
           metaQuery: {
             relation: AND
@@ -88,7 +121,10 @@ const handler = async (req, res) => {
               ${laminaOnduladaFilter}
               ${laminaTranslucidaFilter}
               ${panelAislanteFilter}
-              ${accesoriosFilter}
+              ${aislantesFilter}
+              ${fijacionFilter}
+              ${selladoresFilter}
+              ${rematesLaminaFilter}
             ]
           }
         }) {
@@ -121,9 +157,12 @@ const handler = async (req, res) => {
                   contenido
                   otros
                   precio
+                  whatsapp
                 }
-                accesorios
-                fieldGroupName
+                aislantes
+                selladores
+                fijacion
+                rematesLamina
                 laminaAcanalada
                 laminaLisa
                 laminaOndulada
@@ -135,7 +174,7 @@ const handler = async (req, res) => {
         }
       `,
     });
-    console.log("SERVER SIDE: ", data.products.nodes);
+    // console.log("SERVER SIDE: ", data.products.nodes);
     return res.status(200).json({
       total: data.products.pageInfo.offsetPagination.total,
       products: data.products.nodes,
