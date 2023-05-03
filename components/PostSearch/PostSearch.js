@@ -43,6 +43,7 @@ export const PostSearch = () => {
     if (tutoriales === "true") {
       filters.tutoriales = true;
     }
+
     if (tecnologia === "true") {
       filters.tecnologia = true;
     }
@@ -55,7 +56,7 @@ export const PostSearch = () => {
       }),
     });
     const data = await response.json();
-    console.log("SEARCH DATA: ", data);
+    // console.log("SEARCH DATA: ", data);
     setPosts(data.posts);
     setTotalResults(data.total);
   };
@@ -102,22 +103,10 @@ export const PostSearch = () => {
   }) => {
     // update our browser url
     // search
-    console.log(
-      "FILTERS: ",
-      documentacionTecnica,
-      comunicados,
-      medioAmbiente,
-      noticiasAcero,
-      seguridad,
-      tecnologia,
-      tutoriales
-    );
     await router.push(
       `${router.query.slug.join(
         "/"
-      )}?page=1&comunicados=${!!comunicados}&documentacionTecnica=${!!documentacionTecnica}&medioAmbiente=${!!medioAmbiente}&tecnologia=${!!tecnologia}&noticiasAcero=${!!noticiasAcero}&seguridad=${
-        seguridad === "true"
-      }&tutoriales=${tutoriales === "true"}`,
+      )}?page=1&comunicados=${!!comunicados}&documentacionTecnica=${!!documentacionTecnica}&medioAmbiente=${!!medioAmbiente}&tecnologia=${!!tecnologia}&noticiasAcero=${!!noticiasAcero}&seguridad=${!!seguridad}&tutoriales=${!!tutoriales}`,
       null,
       {
         shallow: true,

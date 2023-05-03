@@ -45,7 +45,7 @@ export const ProyectSearch = () => {
       }),
     });
     const data = await response.json();
-    console.log("SEARCH DATA: ", data);
+    // console.log("SEARCH DATA: ", data);
     setProyects(data.proyects);
     setTotalResults(data.total);
   };
@@ -85,15 +85,6 @@ export const ProyectSearch = () => {
     panelAislante,
   }) => {
     // update our browser url
-    // search
-    console.log(
-      "FILTERS: ",
-      estructuraMetalica,
-      laminaEstructural,
-      laminaTranslucida,
-      mantenimiento,
-      panelAislante
-    );
     await router.push(
       `${router.query.slug.join(
         "/"

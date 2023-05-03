@@ -36,7 +36,7 @@ export const PropertySearch = () => {
       }),
     });
     const data = await response.json();
-    console.log("SEARCH DATA: ", data);
+    // console.log("SEARCH DATA: ", data);
     setProperties(data.properties);
     setTotalResults(data.total);
   };
@@ -72,7 +72,7 @@ export const PropertySearch = () => {
   }) => {
     // update our browser url
     // search
-    console.log("FILTERS: ", petFriendly, hasParking, minPrice, maxPrice);
+    // console.log("FILTERS: ", petFriendly, hasParking, minPrice, maxPrice);
     await router.push(
       `${router.query.slug.join(
         "/"

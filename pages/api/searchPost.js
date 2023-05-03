@@ -144,7 +144,7 @@ const handler = async (req, res) => {
         }
       `,
     });
-    console.log("SERVER SIDE: ", data.posts.nodes);
+    // console.log("SERVER SIDE: ", data.posts.nodes);
     return res.status(200).json({
       total: data.posts.pageInfo.offsetPagination.total,
       posts: data.posts.nodes,

@@ -18,8 +18,6 @@ export const ProyectCard = ({
   ubicacion,
   cliente,
 }) => {
-  console.log(ubicacion, cliente);
-
   // Crear un objeto de fecha a partir de la cadena de texto
   const fechaObjeto = new Date(date);
 

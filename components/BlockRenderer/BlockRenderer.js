@@ -12,11 +12,24 @@ import { ProductSearch } from "components/ProductSearch";
 import { PostTitle } from "components/PostTitle";
 import { ProyectSearch } from "components/ProyectSearch";
 import { PostSearch } from "components/PostSearch";
+import { Embed } from "components/Embed";
+import { CallToActionExternal } from "components/CallToActionExternal";
+import { TickItem } from "components/TickItem";
+import { Gallery } from "components/Gallery";
+import { FormspreeForm } from "components/FormspreeForm";
+import { PropertyFeatures } from "components/PropertyFeatures";
+import { ProductFeatures } from "components/ProductFeatures";
 
 export const BlockRenderer = ({ blocks }) => {
-  console.log(blocks);
+  // console.log(blocks);
   return blocks.map((block) => {
     switch (block.name) {
+      case "acf/productfeatures": {
+        return <ProductFeatures key={block.id} />;
+      }
+      case "acf/propertyfeatures": {
+        return <PropertyFeatures key={block.id} />;
+      }
       case "acf/ctabutton": {
         return (
           <CallToActionButton
@@ -24,6 +37,53 @@ export const BlockRenderer = ({ blocks }) => {
             buttonLabel={block.attributes.data.label}
             destination={block.attributes.data.destination}
             align={block.attributes.data.align}
+          />
+        );
+      }
+      case "acf/ctaexternal": {
+        return (
+          <CallToActionExternal
+            key={block.id}
+            buttonLabel={block.attributes.data.label}
+            destination={block.attributes.data.destination.url}
+            align={block.attributes.data.align}
+          />
+        );
+      }
+      case "acf/propertysearch": {
+        return <PropertySearch key={block.id} />;
+      }
+      case "acf/productsearch": {
+        return <ProductSearch key={block.id} />;
+      }
+      case "acf/proyectsearch": {
+        return <ProyectSearch key={block.id} />;
+      }
+      case "acf/postsearch": {
+        return <PostSearch key={block.id} />;
+      }
+      case "acf/formspreeform": {
+        return (
+          <FormspreeForm
+            key={block.id}
+            formId={block.attributes.data.form_id}
+          />
+        );
+      }
+      case "acf/tickitem": {
+        return (
+          <TickItem key={block.id}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </TickItem>
+        );
+      }
+      case "core/gallery": {
+        return (
+          <Gallery
+            key={block.id}
+            columns={block.attributes.columns || 3}
+            cropImages={block.attributes.imageCrop}
+            items={block.innerBlocks}
           />
         );
       }
@@ -60,25 +120,16 @@ export const BlockRenderer = ({ blocks }) => {
           />
         );
       }
-      case "acf/propertysearch": {
-        return <PropertySearch key={block.id} />;
-      }
-      case "acf/productsearch": {
-        return <ProductSearch key={block.id} />;
-      }
-      case "acf/proyectsearch": {
-        return <ProyectSearch key={block.id} />;
-      }
-      case "acf/postsearch": {
-        return <PostSearch key={block.id} />;
-      }
       case "core/cover": {
-        console.log("COVER BLOCK: ", block);
+        // console.log("COVER BLOCK: ", block);
         return (
           <Cover key={block.id} background={block.attributes.url}>
             <BlockRenderer blocks={block.innerBlocks} />
           </Cover>
         );
+      }
+      case "core/embed": {
+        return <Embed key={block.id} url={block.attributes.url} />;
       }
       case "core/columns": {
         return (
@@ -123,6 +174,7 @@ export const BlockRenderer = ({ blocks }) => {
       case "core/image": {
         return (
           <Image
+            className="mx-auto border-2 border-slate-300 p-1 m-1"
             key={block.id}
             src={block.attributes.url}
             height={block.attributes.height}

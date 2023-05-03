@@ -8,7 +8,7 @@ import { Filters } from "./Filters";
 export const ProductSearch = () => {
   const [products, setProducts] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
-  const pageSize = 3;
+  const pageSize = 6;
   const router = useRouter();
 
   const searchProduct = async () => {
@@ -19,7 +19,10 @@ export const ProductSearch = () => {
       laminaOndulada,
       laminaTranslucida,
       panelAislante,
-      accesorios,
+      fijacion,
+      selladores,
+      aislantes,
+      rematesLamina,
     } = queryString.parse(window.location.search);
     const filters = {};
     if (laminaLisa === "true") {
@@ -37,8 +40,17 @@ export const ProductSearch = () => {
     if (panelAislante === "true") {
       filters.panelAislante = true;
     }
-    if (accesorios === "true") {
-      filters.accesorios = true;
+    if (fijacion === "true") {
+      filters.fijacion = true;
+    }
+    if (selladores === "true") {
+      filters.selladores = true;
+    }
+    if (aislantes === "true") {
+      filters.aislantes = true;
+    }
+    if (rematesLamina === "true") {
+      filters.rematesLamina = true;
     }
 
     const response = await fetch(`/api/searchProduct`, {
@@ -49,7 +61,7 @@ export const ProductSearch = () => {
       }),
     });
     const data = await response.json();
-    console.log("SEARCH DATA: ", data);
+    // console.log("SEARCH DATA: ", data);
     setProducts(data.products);
     setTotalResults(data.total);
   };
@@ -61,7 +73,10 @@ export const ProductSearch = () => {
       laminaOndulada,
       laminaTranslucida,
       panelAislante,
-      accesorios,
+      fijacion,
+      selladores,
+      aislantes,
+      rematesLamina,
     } = queryString.parse(window.location.search);
 
     await router.push(
@@ -71,7 +86,11 @@ export const ProductSearch = () => {
         laminaOndulada === "true"
       }&laminaTranslucida=${laminaTranslucida === "true"}&panelAislante=${
         panelAislante === "true"
-      }&accesorios=${accesorios === "true"}`,
+      }&aislantes=${aislantes === "true"}&fijacion=${
+        fijacion === "true"
+      }&selladores=${selladores === "true"}&rematesLamina=${
+        rematesLamina === "true"
+      }`,
       null,
       {
         shallow: true,
@@ -90,23 +109,16 @@ export const ProductSearch = () => {
     laminaOndulada,
     laminaTranslucida,
     panelAislante,
-    accesorios,
+    fijacion,
+    selladores,
+    aislantes,
+    rematesLamina,
   }) => {
     // update our browser url
-    // search
-    console.log(
-      "FILTERS: ",
-      laminaLisa,
-      laminaAcanalada,
-      laminaOndulada,
-      laminaTranslucida,
-      panelAislante,
-      accesorios
-    );
     await router.push(
       `${router.query.slug.join(
         "/"
-      )}?page=1&laminaLisa=${!!laminaLisa}&laminaAcanalada=${!!laminaAcanalada}&laminaOndulada=${!!laminaOndulada}&laminaTranslucida=${!!laminaTranslucida}&panelAislante=${!!panelAislante}&accesorios=${!!accesorios}`,
+      )}?page=1&laminaLisa=${!!laminaLisa}&laminaAcanalada=${!!laminaAcanalada}&laminaOndulada=${!!laminaOndulada}&laminaTranslucida=${!!laminaTranslucida}&panelAislante=${!!panelAislante}&aislantes=${!!aislantes}&selladores=${!!selladores}&fijacion=${!!fijacion}&rematesLamina=${!!rematesLamina}`,
       null,
       {
         shallow: true,
