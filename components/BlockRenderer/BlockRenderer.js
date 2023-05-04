@@ -108,6 +108,10 @@ export const BlockRenderer = ({ blocks }) => {
             level={block.attributes.level}
             content={block.attributes.content}
             textAlign={block.attributes.textAlign}
+            textColor={
+              theme[block.attributes.textColor] ||
+              block.attributes.style?.color?.text
+            }
           />
         );
       }
@@ -117,6 +121,10 @@ export const BlockRenderer = ({ blocks }) => {
             key={block.id}
             level={block.attributes.level}
             textAlign={block.attributes.textAlign}
+            textColor={
+              theme[block.attributes.textColor] ||
+              block.attributes.style?.color?.text
+            }
           />
         );
       }
@@ -129,6 +137,7 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       case "core/embed": {
+        console.log(block)
         return <Embed key={block.id} url={block.attributes.url} />;
       }
       case "core/columns": {

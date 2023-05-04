@@ -15,14 +15,14 @@ export const Embed = ({url}) => {
   const cleanUrl = transformYoutubeUrl(url);
 
   return (
-    <div className=" max-w-5xl mx-auto aspect-w-16 aspect-h-9">
+    <div className="max-w-xs xs:max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-5xl mx-auto aspect-w-16 aspect-h-9">
       <iframe
         src={cleanUrl}
         frameBorder="0"
         allow="autoplay; encrypted-media"
         allowFullScreen
         title="video"
-        className="w-full h-full sm:mx-3"
+        className="w-full h-full"
         style={{ height: "450px" }}
       />
     </div>
