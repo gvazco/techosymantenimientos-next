@@ -66,7 +66,7 @@ const handler = async (req, res) => {
         query AllProyectsQuery {
           proyects(where: {
             offsetPagination: { size: 9, offset: ${
-              ((filters.page || 1) - 1) * 3
+              ((filters.page || 1) - 1) * 9
             } }
           metaQuery: {
             relation: AND
