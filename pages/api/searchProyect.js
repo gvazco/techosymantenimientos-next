@@ -64,7 +64,7 @@ const handler = async (req, res) => {
     const { data } = await client.query({
       query: gql`
         query AllProyectsQuery {
-          proyects(where: {
+          proyects(first: 100, where: {
             offsetPagination: { size: 9, offset: ${
               ((filters.page || 1) - 1) * 9
             } }
