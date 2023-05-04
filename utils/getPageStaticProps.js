@@ -124,7 +124,6 @@ export const getPageStaticProps = async (context) => {
                   url
                 }
                 label
-                setIcon
               }
             }
           }
