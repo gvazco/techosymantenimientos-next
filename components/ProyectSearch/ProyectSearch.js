@@ -8,7 +8,7 @@ import { Filters } from "./Filters";
 export const ProyectSearch = () => {
   const [proyects, setProyects] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
-  const pageSize = 3;
+  const pageSize = 6;
   const router = useRouter();
 
   const searchProyect = async () => {

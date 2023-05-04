@@ -65,8 +65,8 @@ const handler = async (req, res) => {
       query: gql`
         query AllProyectsQuery {
           proyects(where: {
-            offsetPagination: { size: 3, offset: ${
-              ((filters.page || 1) - 1) * 3
+            offsetPagination: { size: 6, offset: ${
+              ((filters.page || 1) - 1) * 6
             } }
           metaQuery: {
             relation: AND
