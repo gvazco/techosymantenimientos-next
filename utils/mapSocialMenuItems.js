@@ -4,7 +4,6 @@ export const mapSocialMenuItems = (socialItems) => {
   return socialItems.map((socialItem) => ({
     id: uuid(),
     destination: socialItem.socialItem.destination.url,
-    label: socialItem.socialItem.label,
-    setIcon: socialItem.socialItem.setIcon,
+    label: socialItem.socialItem.label
   }));
 };
