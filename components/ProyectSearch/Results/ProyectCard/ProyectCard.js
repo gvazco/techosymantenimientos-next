@@ -49,8 +49,7 @@ export const ProyectCard = ({
   const fechaFormateada = nombreMes + " " + año;
 
   return (
-    <Link href={destination} legacyBehavior>
-      <a className="border-2 border-slate-300 p-5 block bg-slate-100 hover:bg-slate-200">
+    <Link href={destination} as={destination} className="border-2 border-slate-300 p-5 block bg-slate-100 hover:bg-slate-200">
         <div className="flex w-full">
           <Image
             className="mb-3 mx-auto border-2 border-slate-300"
@@ -92,8 +91,6 @@ export const ProyectCard = ({
             </span>
           </div>
         )}
-
-      </a>
     </Link>
   );
 };
